@@ -105,7 +105,7 @@
     text-decoration: none;
   }
     
-  .contact-btn {
+  #contact-btn {
     position: fixed;
     bottom: 40px;
     right: 10px;
@@ -117,6 +117,31 @@
     cursor: pointer;
     z-index: 1000;
     box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+
+  #popup-contact {
+    display: none;
+    position: fixed;
+    bottom: 110px;
+    right: 10px;
+    background: #000;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 999;
+  }
+
+  #popup-contact a {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    margin: 8px 0;
+  }
+
+  #popup-contact img {
+    margin-right: 8px;
   }
     .dot {
         width: 12px;
@@ -143,31 +168,6 @@
             transform: scale(3.0);
             opacity: 0.0;
         }
-
-  .popup-contact {
-    display: none;
-    position: fixed;
-    bottom: 110px;
-    right: 10px;
-    background: #000;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-    z-index: 999;
-  }
-
-  .popup-contact a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    margin: 8px 0;
-  }
-
-  .popup-contact img {
-    margin-right: 8px;
-  }
     
   </style>
 </head>
