@@ -155,8 +155,8 @@
             position: fixed; /* Posisi tetap */
             bottom: 70px; /* Jarak dari bawah */
             left: 40px; /* Jarak dari kanan */
-            width: 60px; /* Ukuran container */
-            height: 60px; /* Ukuran container */
+            width: 50px; /* Ukuran container */
+            height: 50px; /* Ukuran container */
             background-color: #25D366; /* Warna hijau untuk latar belakang */
             border-radius: 50%; /* Membuat lingkaran */
             display: flex; /* Untuk pusatkan ikon */
@@ -185,30 +185,45 @@
             width: 250px; /* Lebar popup */
             z-index: 1000; /* Pastikan popup di atas elemen lain */
         }
+       #chat-text {
+            position: fixed; /* Posisi tetap */
+            bottom: 78px; /* Jarak dari bawah */
+            left: 95px; /* Jarak dari kanan, seimbang dengan ikon */
+            background: #9999; /* Latar belakang hijau */
+            color: white; /* Teks berwarna putih */
+            padding: 7px; /* Padding untuk teks */
+            border-radius: 3px; /* Sudut bulat */
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Efek bayangan */
+            display: flex; /* Untuk menampilkan teks dan ikon berbaris */
+            align-items: center; /* Rata tengah vertikal */
+            font-size: 14px;
+        }
 
         .popup-header {
             font-weight: bold;
             margin-bottom: 10px; /* Margin untuk jarak bawah header */
-            color: black;
+            color: green;
+            text-align: left;
         }
 
         .popup-text {
             margin: 5px 0; /* Margin untuk teks */
             font-size: 14px;/* Ukuran teks */
             color: black;
+            text-align: left;
         }
 
         #popup-contact a {
             display: flex; /* Buat link tampil sebagai blok */
             align-items: center; /* Rata tengah gambar dan teks */
             text-decoration: none; /* Hapus garis bawah */
-            color: black; /* Warna teks untuk link */
+            color: green; /* Warna teks untuk link */
             margin-top: 10px; /* Jarak atas link */
         }
 
         #popup-contact a img {
-            width: 24px; /* Ukuran gambar */
-            height: 24px; /* Ukuran gambar */
+            width: 40px; /* Ukuran gambar */
+            height: 40px; /* Ukuran gambar */
             margin-right: 10px; /* Ruang antara gambar dan teks */
         }
 
@@ -295,32 +310,33 @@ Kami menyediakan paket wisata Banyuwangi lengkap dengan transportasi, penginapan
 
   <h2 class="contact-title">Kontak Person</h2>
 <div class="contact-icons">
-  <a href="https://wa.me/6282218493327" target="_blank">
-    <img src="https://i.ibb.co.com/tTq0X2wR/20250507-144833.png" alt="WhatsApp">
-  </a>
   <a href="https://www.instagram.com/banyuwangi.trip?igsh=YzljYTk1ODg3Zg==" target="_blank">
-    <img src="https://i.ibb.co.com/cK382TQG/20250507-144807.png" alt="Instagram">
+    <img src="insta.png" alt="Instagram">
   </a>
   <a href="https://www.tiktok.com/@dorigober?_t=ZS-8w9UEo7jUHg&_r=1" target="_blank">
-    <img src="https://i.ibb.co.com/TMRg53PG/20250507-144904.png" alt="TikTok">
+    <img src="tiktok.png" alt="TikTok">
   </a>
   <a href="https://www.youtube.com/channel/UCD2DQ_2bLJc2y73Be8zPF6A" target="_blank">
-    <img src="https://i.ibb.co.com/rfsQnXF6/20250507-144926.png" alt="YouTube">
+    <img src="yt.png" alt="YouTube">
   </a>
   
 </div>
 
   <!-- Tombol Kontak Person -->
-<div id="whatsapp-container">
-        <img id="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" />
+  <div id="chat-text">
+        Ada yang bisa kami bantu?
+        <a href="#" id="whatsapp-container">
+            <img id="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" />
+        </a>
     </div>
 
     <!-- Popup Kontak -->
+  
     <div id="popup-contact">
         <div class="popup-header">Chat Aja Dulu :)</div>
         <div class="popup-text">Konsultasikan rencana perjalanan Anda ke Banyuwangi bersama kami</div>
         <a href="https://wa.me/6282218493327" target="_blank">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" /> WhatsApp
+            <img src="wakontak.png" alt="WhatsApp" /><strong> WhatsApp</strong>
         </a>
         <div class="popup-text">Online setiap hari (07.00 - 21.00 WIB)</div>
     </div>
@@ -334,10 +350,10 @@ Kami menyediakan paket wisata Banyuwangi lengkap dengan transportasi, penginapan
             if (popupContact.style.display === 'none' || popupContact.style.display === '') {
                 popupContact.style.display = 'block'; // Tampilkan popup
                 whatsappIcon.style.transform = 'rotate(180deg)'; // Rotasi
-                whatsappIcon.src = 'https://img.icons8.com/ios-filled/50/000000/multiply.png'; // Ganti ke ikon "X"
+                whatsappIcon.src = 'x.png'; // Ganti ke ikon "X"
             } else {
                 whatsappIcon.style.transform = 'rotate(0deg)'; // Kembali ke posisi awal
-                whatsappIcon.src = 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg'; // Kembali ke ikon WA
+                whatsappIcon.src = 'wakontak.png'; // Kembali ke ikon WA
                 
                 setTimeout(() => {
                     popupContact.style.display = 'none'; // Sembunyikan popup setelah rotasi
