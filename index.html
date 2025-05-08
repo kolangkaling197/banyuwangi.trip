@@ -107,44 +107,69 @@
     text-decoration: none;
   }
     
-  #contact-btn {
-    position: fixed;
-    bottom: 60px;
-    right: 10px;
-    background-color: black;
-    color: white;
-    border: none;
-    border-radius: 40px;
-    padding: 5px 15px;
-    cursor: pointer;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-  }
+    #whatsapp-container {
+            position: fixed; /* Posisi tetap */
+            bottom: 20px; /* Jarak dari bawah */
+            left: 20px; /* Jarak dari kanan */
+            width: 60px; /* Ukuran container */
+            height: 60px; /* Ukuran container */
+            background-color: #25D366; /* Warna hijau untuk latar belakang */
+            border-radius: 50%; /* Membuat lingkaran */
+            display: flex; /* Untuk pusatkan ikon */
+            align-items: center; /* Pusatkan vertikal */
+            justify-content: center; /* Pusatkan horizontal */
+            cursor: pointer; /* Tunjukkan pointer ketika hover */
+            transition: background-color 0.3s; /* Transisi halus */
+        }
 
-  #popup-contact {
-    display: none;
-    position: fixed;
-    bottom: 70px;
-    right: 10px;
-    background: #000;
-    border-radius: 10px;
-    padding: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    z-index: 999;
-  }
+        #whatsapp-icon {
+            width: 60%; /* Ukuran ikon WhatsApp */
+            height: 60%; /* Ukuran ikon WhatsApp */
+            transition: transform 0.5s; /* Untuk efek rotasi */
+        }
 
-  #popup-contact a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #fff;
-    font-weight: bold;
-    margin: 8px 0;
-  }
+        #popup-contact {
+            display: none; /* Sembunyikan popup secara default */
+            position: fixed; /* Posisi tetap */
+            bottom: 90px; /* Jarak dari bawah untuk popup */
+            left: 20px; /* Jarak dari kanan untuk popup */
+            background: #25D366; /* Latar belakang hijau */
+            color: white; /* Warna teks putih */
+            padding: 20px; /* Padding di dalam popup */
+            border-radius: 10px; /* Sudut bulat */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+            width: 250px; /* Lebar popup */
+            z-index: 1000; /* Pastikan popup di atas elemen lain */
+        }
 
-  #popup-contact img {
-    margin-right: 8px;
-  }
+        .popup-header {
+            font-weight: bold;
+            margin-bottom: 10px; /* Margin untuk jarak bawah header */
+        }
+
+        .popup-text {
+            margin: 5px 0; /* Margin untuk teks */
+            font-size: 14px; /* Ukuran teks */
+        }
+
+        #popup-contact a {
+            display: flex; /* Buat link tampil sebagai blok */
+            align-items: center; /* Rata tengah gambar dan teks */
+            text-decoration: none; /* Hapus garis bawah */
+            color: white; /* Warna teks untuk link */
+            margin-top: 10px; /* Jarak atas link */
+        }
+
+        #popup-contact a img {
+            width: 24px; /* Ukuran gambar */
+            height: 24px; /* Ukuran gambar */
+            margin-right: 10px; /* Ruang antara gambar dan teks */
+        }
+
+        /* Tambahan: efek hover untuk latar belakang */
+        #whatsapp-container:hover {
+            background-color: #20b358; /* Warna lebih gelap saat hover */
+        }
     
   </style>
 </head>
@@ -222,42 +247,39 @@ Kami menyediakan paket wisata Banyuwangi lengkap dengan transportasi, penginapan
   </a>
 </div>
   <!-- Tombol Kontak Person -->
-<button id="contact-btn">Kontak Person</button>
+<div id="whatsapp-container">
+        <img id="whatsapp-icon" src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Icon" />
+    </div>
 
-<!-- Popup Kontak -->
-<div id="popup-contact">
-  <a href="https://wa.me/6282218493327" target="_blank">
-    <img src="wa.png" alt="WhatsApp" width="24" height="24" />
-    WhatsApp
-  </a>
-  <a href="https://www.instagram.com/banyuwangi.trip?igsh=YzljYTk1ODg3Zg==" target="_blank">
-    <img src="insta.png" alt="Instagram" width="24" height="24" />
-    Instagram
-  </a>
-  <a href="https://www.tiktok.com/@dorigober?_t=ZS-8w9UEo7jUHg&_r=1" target="_blank">
-    <img src="tiktok.png" alt="TikTok" width="24" height="24" />
-    TikTok
-  </a>
-  <a href="https://www.youtube.com/channel/UCD2DQ_2bLJc2y73Be8zPF6A" target="_blank">
-    <img src="yt.png" alt="YouTube" width="24" height="24" />
-    YouTube
-  </a>
-</div>
+    <!-- Popup Kontak -->
+    <div id="popup-contact">
+        <div class="popup-header">Chat Aja Dulu :)</div>
+        <div class="popup-text">Konsultasikan rencana perjalanan Anda ke Banyuwangi bersama kami</div>
+        <a href="https://wa.me/6282218493327" target="_blank">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" /> WhatsApp
+        </a>
+        <div class="popup-text">Online setiap hari (07.00 - 21.00 WIB)</div>
+    </div>
 
 <script>
-  const btn = document.getElementById("contact-btn");
-  const popup = document.getElementById("popup-contact");
-
-  btn.addEventListener("click", () => {
-    popup.style.display = popup.style.display === "block" ? "none" : "block";
-  });
-
-  // Tutup popup saat klik di luar
-  document.addEventListener("click", function (e) {
-    if (!btn.contains(e.target) && !popup.contains(e.target)) {
-      popup.style.display = "none";
-    }
-  });
+  const whatsappIcon = document.getElementById('whatsapp-icon');
+        const popupContact = document.getElementById('popup-contact');
+        const whatsappContainer = document.getElementById('whatsapp-container');
+        
+        whatsappContainer.addEventListener('click', () => {
+            if (popupContact.style.display === 'none' || popupContact.style.display === '') {
+                popupContact.style.display = 'block'; // Tampilkan popup
+                whatsappIcon.style.transform = 'rotate(180deg)'; // Rotasi
+                whatsappIcon.src = 'https://img.icons8.com/ios-filled/50/000000/multiply.png'; // Ganti ke ikon "X"
+            } else {
+                whatsappIcon.style.transform = 'rotate(0deg)'; // Kembali ke posisi awal
+                whatsappIcon.src = 'https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg'; // Kembali ke ikon WA
+                
+                setTimeout(() => {
+                    popupContact.style.display = 'none'; // Sembunyikan popup setelah rotasi
+                }, 150); // Waktu untuk rotasi
+            }
+        });
 </script>
 
   
