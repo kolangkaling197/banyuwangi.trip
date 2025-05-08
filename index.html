@@ -153,7 +153,7 @@
     
     #whatsapp-container {
             position: fixed; /* Posisi tetap */
-            bottom: 70px; /* Jarak dari bawah */
+            bottom: 35px; /* Jarak dari bawah */
             left: 40px; /* Jarak dari kanan */
             width: 50px; /* Ukuran container */
             height: 50px; /* Ukuran container */
@@ -175,9 +175,9 @@
         #popup-contact {
             display: none; /* Sembunyikan popup secara default */
             position: fixed; /* Posisi tetap */
-            bottom: 145px; /* Jarak dari bawah untuk popup */
+            bottom: 90px; /* Jarak dari bawah untuk popup */
             left: 40px; /* Jarak dari kanan untuk popup */
-            background: #ffff; /* Latar belakang hijau */
+            background: #111; /* Latar belakang hijau */
             color: white; /* Warna teks putih */
             padding: 20px; /* Padding di dalam popup */
             border-radius: 10px; /* Sudut bulat */
@@ -187,9 +187,9 @@
         }
        #chat-text {
             position: fixed; /* Posisi tetap */
-            bottom: 78px; /* Jarak dari bawah */
+            bottom: 43px; /* Jarak dari bawah */
             left: 95px; /* Jarak dari kanan, seimbang dengan ikon */
-            background: #9999; /* Latar belakang hijau */
+            background: #7777; /* Latar belakang hijau */
             color: white; /* Teks berwarna putih */
             padding: 7px; /* Padding untuk teks */
             border-radius: 3px; /* Sudut bulat */
@@ -209,7 +209,7 @@
         .popup-text {
             margin: 5px 0; /* Margin untuk teks */
             font-size: 14px;/* Ukuran teks */
-            color: black;
+            color: white;
             text-align: left;
         }
 
@@ -343,23 +343,25 @@ Kami menyediakan paket wisata Banyuwangi lengkap dengan transportasi, penginapan
 
 <script>
   const whatsappIcon = document.getElementById('whatsapp-icon');
-        const popupContact = document.getElementById('popup-contact');
-        const whatsappContainer = document.getElementById('whatsapp-container');
+const popupContact = document.getElementById('popup-contact');
+const whatsappContainer = document.getElementById('whatsapp-container');
+
+whatsappContainer.addEventListener('click', (event) => {
+    event.preventDefault(); // Mencegah perilaku default
+    if (popupContact.style.display === 'none' || popupContact.style.display === '') {
+        popupContact.style.display = 'block'; // Tampilkan popup
+        whatsappIcon.style.transform = 'rotate(180deg)'; // Rotasi
+        whatsappIcon.src = 'x.png'; // Ganti ke ikon "X"
+    } else {
+        whatsappIcon.style.transform = 'rotate(0deg)'; // Kembali ke posisi awal
+        whatsappIcon.src = 'wakontak.png'; // Kembali ke ikon WA
         
-        whatsappContainer.addEventListener('click', () => {
-            if (popupContact.style.display === 'none' || popupContact.style.display === '') {
-                popupContact.style.display = 'block'; // Tampilkan popup
-                whatsappIcon.style.transform = 'rotate(180deg)'; // Rotasi
-                whatsappIcon.src = 'x.png'; // Ganti ke ikon "X"
-            } else {
-                whatsappIcon.style.transform = 'rotate(0deg)'; // Kembali ke posisi awal
-                whatsappIcon.src = 'wakontak.png'; // Kembali ke ikon WA
-                
-                setTimeout(() => {
-                    popupContact.style.display = 'none'; // Sembunyikan popup setelah rotasi
-                }, 150); // Waktu untuk rotasi
-            }
-        });
+        setTimeout(() => {
+            popupContact.style.display = 'none'; // Sembunyikan popup setelah rotasi
+        }, 150); // Waktu untuk rotasi
+    }
+});
+
 </script>
 
   
