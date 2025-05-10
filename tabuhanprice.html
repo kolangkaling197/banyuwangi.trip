@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liburan ke Pulau Tabuhan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+        }
+        header {
+            background-color: #black;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 10px;
+        }
+        h1, h2, h3 {
+            margin: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+        .package {
+            border: 1px solid #007BFF;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            background-color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #28a745;
+        }
+        .cta {
+            text-align: center;
+            margin-top: 30px;
+        }
+        .cta a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        .cta a:hover {
+            background-color: #0056b3;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #007BFF;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+        .booking-form {
+            display: none; /* Hide by default */
+            margin-top: 20px;
+            padding: 20px;
+            border: 1px solid #007BFF;
+            border-radius: 10px;
+            background-color: white;
+        }
+        .qris-link, .bank-info, .ewallet-info {
+            margin: 20px 0;
+            text-align: center;
+            display: none; /* Hide by default */
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Menu Pemesanan Paket Liburan</h1>
+        <h1>Pulau Tabuhan</h1>
+    </header>
+    
+    <div class="container">
+        <div class="package">
+            <h2>Paket Liburan</h2>
+            <label for="packageSelect">Pilih Paket:</label>
+            <select id="packageSelect">
+                <option value="0" data-price="0">--Pilih Paket--</option>
+                <option value="3-hari-2-malam" data-price="2500000">3 Hari 2 Malam - Rp2.500.000</option>
+                <option value="2-hari-1-malam" data-price="1200000">2 Hari 1 Malam - Rp1.200.000</option>
+                <option value="4-hari-3-malam" data-price="4500000">4 Hari 3 Malam - Rp4.500.000</option>
+            </select>
+            <p id="selectedPrice" class="price" style="display: none;"></p>
+        </div>
+
+        <div class="cta">
+            <a href="#" id="bookNow">Pesan Sekarang!</a>
+        </div>
+
+        <div class="booking-form" id="bookingForm">
+            <h2>Pilih Jadwal dan Metode Pembayaran</h2>
+            <form id="form">
+                <label for="date">Pilih Tanggal :</label>
+                <input type="date" id="date" name="date" required><br><br>
+
+                <label for="payment">Metode Pembayaran:</label>
+                <select id="payment" name="payment" required>
+                    <option value="qris">--Pilih Metode--</option>
+                    <option value="qris">QRIS</option>
+                    <option value="bank">Transfer Bank</option>
+                    <option value="ewallet">E-Wallet</option>
+                </select><br><br>
+
+                <div class="qris-link" id="qrisLink">
+                    <h3>Pembayaran Melalui QRIS</h3>
+                    <img src="https://i.ibb.co/hJNWbHVR/20250510-102526.jpg" alt="QRIS" style="max-width: 100%; height: auto;">
+                </div>
+
+                <div class="bank-info" id="bankInfo">
+                    <h3>Pembayaran Melalui Bank BCA</h3>
+                    <p>No. Rekening: 1801707390</p>
+                    <p>Atas Nama: AMIL YORDAN</p>
+                </div>
+
+                <div class="ewallet-info" id="ewalletInfo">
+                    <h3>Pembayaran Melalui E-Wallet DANA</h3>
+                    <p>No. DANA: 087852656818</p>
+                    <p>Atas Nama: AMIL YORDAN</p>
+                </div>
+
+                <button type="submit">Konfirmasi Pembayaran</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('bookNow').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('bookingForm').style.display = 'block';
+        });
+
+        document.getElementById('packageSelect').addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+            const price = selectedOption.getAttribute('data-price');
+            const selectedPriceElement = document.getElementById('selectedPrice');
+
+            if (price > 0) {
+                selectedPriceElement.innerText = `Harga: Rp${price}`;
+                selectedPriceElement.style.display = 'block';
+            } else {
+                selectedPriceElement.style.display = 'none';
+            }
+        });
+
+        document.getElementById('payment').addEventListener('change', function() {
+            const selectedPayment = this.value;
+            const qrisLink = document.getElementById('qrisLink');
+            const bankInfo = document.getElementById('bankInfo');
+            const ewalletInfo = document.getElementById('ewalletInfo');
+
+            // Sembunyikan semua info pembayaran sebelumnya
+            qrisLink.style.display = 'none';
+            bankInfo.style.display = 'none';
+            ewalletInfo.style.display = 'none';
+
+            // Tampilkan informasi sesuai pilihan
+            if (selectedPayment === 'qris') {
+                qrisLink.style.display = 'block';
+            } else if (selectedPayment === 'bank') {
+                bankInfo.style.display = 'block';
+            } else if (selectedPayment === 'ewallet') {
+                ewalletInfo.style.display = 'block';
+            }
+        });
+
+        document.getElementById('form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const date = document.getElementById('date').value;
+            const selectedPackage = document.getElementById('packageSelect');
+            const packageName = selectedPackage.options[selectedPackage.selectedIndex].text; // Nama paket
+            const price = selectedPackage.options[selectedPackage.selectedIndex].getAttribute('data-price'); // Harga
+            const payment = document.getElementById('payment').value;
+            const destination = "Pulau Tabuhan"; // Nama Destinasi
+
+            // Membangun pesan
+            const message = `Saya ingin memesan paket liburan :\nDestinasi : ${destination}\nPaket : ${packageName}\nTanggal : ${date}\nMetode Pembayaran : ${payment}`;
+
+            const waNumber = '6287852656818'; // Nomor WhatsApp
+            const waUrl = `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(message)}`;
+
+            // Membuka WhatsApp
+            window.open(waUrl);
+
+            // Sembunyikan formulir dan kirim notifikasi
+            document.getElementById('bookingForm').style.display = 'none';
+            alert("Silakan kirim bukti transfer ke WhatsApp kami.");
+        });
+    </script>
+</body>
+</html>
