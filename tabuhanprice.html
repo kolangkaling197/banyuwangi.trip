@@ -13,11 +13,11 @@
             background-color: #000;
         }
         header {
-            background-color: #black;
+            background-color: #000;
             color: white;
             padding: 20px 0;
             text-align: center;
-            font-size: 10px;
+            font-size: 14px;
         }
         h1, h2, h3 {
             margin: 0;
@@ -35,7 +35,7 @@
             background-color: white;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         }
-        .price {
+        .price, .dp {
             font-size: 24px;
             font-weight: bold;
             color: #28a745;
@@ -74,29 +74,29 @@
             background-color: white;
         }
         .qris-link, .bank-info, .ewallet-info {
-            margin: 20px 0;
+            margin: 10px 0;
             text-align: center;
+            font-weight: blod;
             display: none; /* Hide by default */
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Menu Pemesanan Paket Liburan</h1>
-        <h1>Pulau Tabuhan</h1>
+        <h1>Menu Pemesanan</h1>
+        <h1>Pulau Tabuhan</ha>
     </header>
     
     <div class="container">
         <div class="package">
             <h2>Paket Liburan</h2>
-            <label for="packageSelect">Pilih Paket:</label>
+            <label for="packageSelect">Pilih Paket :</label>
             <select id="packageSelect">
-                <option value="0" data-price="0">--Pilih Paket--</option>
-                <option value="3-hari-2-malam" data-price="2500000">3 Hari 2 Malam - Rp2.500.000</option>
-                <option value="2-hari-1-malam" data-price="1200000">2 Hari 1 Malam - Rp1.200.000</option>
-                <option value="4-hari-3-malam" data-price="4500000">4 Hari 3 Malam - Rp4.500.000</option>
+                <option value="0" data-price="0"></option>
+                <option value="tabuhan" data-price="1500000">Pulau Tabuhan -Rp.1.500.000 (minimal 10 orang)</option>
             </select>
             <p id="selectedPrice" class="price" style="display: none;"></p>
+            <p id="dpAmount" class="dp" style="display: none;"></p>
         </div>
 
         <div class="cta">
@@ -106,12 +106,12 @@
         <div class="booking-form" id="bookingForm">
             <h2>Pilih Jadwal dan Metode Pembayaran</h2>
             <form id="form">
-                <label for="date">Pilih Tanggal :</label>
+                <label for="date">Pilih Tanggal:</label>
                 <input type="date" id="date" name="date" required><br><br>
 
                 <label for="payment">Metode Pembayaran:</label>
                 <select id="payment" name="payment" required>
-                    <option value="qris">--Pilih Metode--</option>
+                    <option value="none">--Pilih--</option>
                     <option value="qris">QRIS</option>
                     <option value="bank">Transfer Bank</option>
                     <option value="ewallet">E-Wallet</option>
@@ -124,20 +124,22 @@
 
                 <div class="bank-info" id="bankInfo">
                     <h3>Pembayaran Melalui Bank BCA</h3>
-                    <p>No. Rekening: 1801707390</p>
-                    <p>Atas Nama: AMIL YORDAN</p>
+                    <p>No. Rekening : 1801707390</p>
+                    <p>Atas Nama : AMIL YORDAN</p>
                 </div>
 
                 <div class="ewallet-info" id="ewalletInfo">
                     <h3>Pembayaran Melalui E-Wallet DANA</h3>
-                    <p>No. DANA: 087852656818</p>
-                    <p>Atas Nama: AMIL YORDAN</p>
+                    <p>No. DANA : 087852656818</p>
+                    <p>Atas Nama : AMIL YORDAN</p>
                 </div>
 
                 <button type="submit">Konfirmasi Pembayaran</button>
             </form>
         </div>
     </div>
+
+    
 
     <script>
         document.getElementById('bookNow').addEventListener('click', function(event) {
@@ -149,12 +151,19 @@
             const selectedOption = this.options[this.selectedIndex];
             const price = selectedOption.getAttribute('data-price');
             const selectedPriceElement = document.getElementById('selectedPrice');
+            const dpAmountElement = document.getElementById('dpAmount');
 
             if (price > 0) {
                 selectedPriceElement.innerText = `Harga: Rp${price}`;
                 selectedPriceElement.style.display = 'block';
+
+                // Hitung 30% untuk DP
+                const dpAmount = (price * 0.30).toFixed(0); // Menghitung 30% dari harga
+                dpAmountElement.innerText = `Uang Muka (DP 30%): Rp${dpAmount}`;
+                dpAmountElement.style.display = 'block';
             } else {
                 selectedPriceElement.style.display = 'none';
+                dpAmountElement.style.display = 'none';
             }
         });
 
@@ -188,9 +197,10 @@
             const price = selectedPackage.options[selectedPackage.selectedIndex].getAttribute('data-price'); // Harga
             const payment = document.getElementById('payment').value;
             const destination = "Pulau Tabuhan"; // Nama Destinasi
+            const dpAmount = (price * 0.30).toFixed(0); // Uang muka (30% dari harga)
 
             // Membangun pesan
-            const message = `Saya ingin memesan paket liburan :\nDestinasi : ${destination}\nPaket : ${packageName}\nTanggal : ${date}\nMetode Pembayaran : ${payment}`;
+            const message = `Saya ingin memesan paket liburan:\nDestinasi: ${destination}\nPaket: ${packageName}\nHarga: Rp${price}\nUang Muka (DP 30%): Rp${dpAmount}\nTanggal: ${date}\nMetode Pembayaran: ${payment}`;
 
             const waNumber = '6287852656818'; // Nomor WhatsApp
             const waUrl = `https://api.whatsapp.com/send?phone=${waNumber}&text=${encodeURIComponent(message)}`;
@@ -205,3 +215,4 @@
     </script>
 </body>
 </html>
+
