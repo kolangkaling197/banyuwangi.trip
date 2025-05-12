@@ -344,7 +344,12 @@ Kami menyediakan paket wisata Banyuwangi lengkap dengan transportasi, penginapan
         <div class="popup-text"><strong>Online Setiap Hari ( 07.00 - 21.00 WIB )</strong></div>
     </div>
 
-<script>
+  <script>
+  const version = "1.0";
+  document.querySelectorAll("a").forEach(link => {
+    if (link.href.includes(".html")) {
+      link.href += "?v=" + version;
+    }
   const whatsappIcon = document.getElementById('whatsapp-icon');
 const popupContact = document.getElementById('popup-contact');
 const whatsappContainer = document.getElementById('whatsapp-container');
