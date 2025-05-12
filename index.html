@@ -345,32 +345,39 @@ Kami menyediakan paket wisata Banyuwangi lengkap dengan transportasi, penginapan
     </div>
 
   <script>
+  // Versi yang akan digunakan
   const version = "1.1";
+
+  // Menambahkan query string versi pada setiap link yang mengarah ke file .html
   document.querySelectorAll("a").forEach(link => {
     if (link.href.includes(".html")) {
       link.href += "?v=" + version;
     }
-  const whatsappIcon = document.getElementById('whatsapp-icon');
-const popupContact = document.getElementById('popup-contact');
-const whatsappContainer = document.getElementById('whatsapp-container');
+  });
 
-whatsappContainer.addEventListener('click', (event) => {
+  // Script untuk menangani interaksi dengan WhatsApp
+  const whatsappIcon = document.getElementById('whatsapp-icon');
+  const popupContact = document.getElementById('popup-contact');
+  const whatsappContainer = document.getElementById('whatsapp-container');
+
+  // Menambahkan event listener untuk tombol WhatsApp
+  whatsappContainer.addEventListener('click', (event) => {
     event.preventDefault(); // Mencegah perilaku default
     if (popupContact.style.display === 'none' || popupContact.style.display === '') {
-        popupContact.style.display = 'block'; // Tampilkan popup
-        whatsappIcon.style.transform = 'rotate(180deg)'; // Rotasi
-        whatsappIcon.src = 'x.png'; // Ganti ke ikon "X"
+      popupContact.style.display = 'block'; // Tampilkan popup
+      whatsappIcon.style.transform = 'rotate(180deg)'; // Rotasi ikon
+      whatsappIcon.src = 'x.png'; // Ganti ke ikon "X"
     } else {
-        whatsappIcon.style.transform = 'rotate(0deg)'; // Kembali ke posisi awal
-        whatsappIcon.src = 'wakontak.png'; // Kembali ke ikon WA
-        
-        setTimeout(() => {
-            popupContact.style.display = 'none'; // Sembunyikan popup setelah rotasi
-        }, 150); // Waktu untuk rotasi
-    }
-});
+      whatsappIcon.style.transform = 'rotate(0deg)'; // Kembali ke posisi awal
+      whatsappIcon.src = 'wakontak.png'; // Kembali ke ikon WA
 
+      setTimeout(() => {
+        popupContact.style.display = 'none'; // Sembunyikan popup setelah rotasi
+      }, 150); // Waktu untuk rotasi
+    }
+  });
 </script>
+
 
     <h4>Copyright©2025. banyuwangitrip. Semua hak dilindungi.</h4>
 </body>
