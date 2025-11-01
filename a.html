@@ -11,37 +11,20 @@
   </script>
   
   <style>
-    /* --- PERUBAHAN DI SINI --- */
+    /* Mengatur halaman agar full screen dan tidak bisa scroll */
     html, body { 
       margin: 0; 
       padding: 0;
       background: #000;
       width: 100%;
       height: 100%;
-      overflow: hidden; /* Kunci agar tidak bisa di-scroll */
+      overflow: hidden; 
     }
     
+    /* Mengatur player agar mengisi layar */
     #player { 
       width: 100%; 
-      height: 100%; /* Kunci agar player mengisi seluruh layar */
-    }
-    /* --- AKHIR PERUBAHAN --- */
-
-    /* Posisi watermark */
-    .watermark-text {
-      position: absolute;
-      bottom: 10px;
-      right: 35%;
-      color: white;
-      font-size: 10px;
-      font-weight: bold;
-      text-shadow: 1px 1px 2px #000;
-      z-index: 9999;
-      pointer-events: none;
-      font-family: sans-serif;
-    }
-    .jwplayer {
-      position: relative !important;
+      height: 100%; 
     }
   </style>
 </head>
@@ -66,41 +49,25 @@
         }]
       }],
       autostart: true,
-      
-      /* --- PERUBAHAN DI SINI --- */
       width: "100%",
-      height: "100%", /* Menggantikan aspectratio */
-      /* aspectratio: "16:9", Dihapus agar player bisa stretch */
-      /* --- AKHIR PERUBAHAN --- */
-
+      height: "100%", 
       logo: {
         file: "",
         position: "bottom-left"
       },
-      skin: {
-        name: "glow",
-        active: "#ffff00",
-        inactive: "#adff2f",
-        background: "transparent"
-      },
+      
+      /* --- PERUBAHAN DI SINI --- */
+      /* Blok 'skin' kustom (yang berwarna kuning/hijau) telah dihapus 
+         agar player menggunakan tema default (normal).
+      */
+      
       controls: true,
       displaytitle: true,
       fullscreen: true,
       cast: {},
       sharing: {}
     });
-
-    // Tambahkan Watermark kustom saat player siap
-    instance.on('ready', function () {
-      const watermark = document.createElement("div");
-      watermark.className = "watermark-text";
-      watermark.innerText = "CHENXDAYAT BENGKAK";
-      
-      const container = document.querySelector(".jwplayer");
-      if (container) {
-          container.appendChild(watermark);
-      }
-    });
+    
   </script>
 </body>
 </html>
